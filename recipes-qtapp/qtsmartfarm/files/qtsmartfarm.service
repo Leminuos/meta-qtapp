@@ -1,0 +1,16 @@
+[Unit]
+Description=My Qt Application
+After=network.target
+
+[Service]
+Type=simple
+Environment=TSLIB_TSDEVICE=/dev/input/event0
+Environment=TSLIB_CONFFILE=/etc/ts.conf
+Environment=TSLIB_CALIBFILE=/etc/pointercal
+Environment=TSLIB_FBDEVICE=/dev/fb0
+ExecStart=/usr/bin/QT5_SmartFarm -platform linuxfb -plugin=tslib
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
